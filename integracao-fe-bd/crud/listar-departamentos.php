@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<?php 
+// Como vamos manipular dados no banco, precisamos incluir o arquivo de conexao
+include('conexao.php');
+
+$sql = $conn->prepare('SELECT * FROM DEPARTAMENTOS ORDER BY NOME');
+
+$sql->execute();
+$result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php os reg do BD 
+
+?>
+
+
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -11,6 +23,11 @@
 
     <h1>Departamentos</h1>
 
+    <hr>
+
+    <a href="form-departamentos.php" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> NOVO</a>
+    <hr>
+
         <table class="table table-hover">
             <thead >
                 <tr>
@@ -21,10 +38,17 @@
             </thead>
 
             <tbody>
+            <?php 
+            
 
+            foreach ($result as $r) {
+
+                
+
+            ?>
             <tr>
-                <td>Aqui vai nome dp</td>
-                <td>Aqui vai a sigla</td>
+                <td><?php echo($r['nome']); ?></td>
+                <td><?php echo($r['sigla']); ?></td>
                 <td class="text-right" >
 
                 <a href="#" class="btn btn-warning"> <i class="glyphicon glyphicon-pencil"> </i>  </a>
@@ -34,9 +58,16 @@
                 </td>
             </tr>
 
+            <?php 
+
+            }
+
+            ?>
             
             </tbody>
         </table>
+
+        <a href="index.php" class="btn btn-success"><i class="glyphicon glyphicon-chevron-left"></i> VOLTAR </a>
 
 
     </div>
