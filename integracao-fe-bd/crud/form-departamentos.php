@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Departamentos</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    
 </head>
 <body>
     <div class="container">
@@ -15,7 +16,7 @@
 
     
 
-    <form action="acao-departamentos.php" method="POST" > 
+    <form action="acao-departamentos.php" method="POST" class="form" onsubmit="return validaDepartamento()" > 
     <div class="row">
         <div class="col-sm-6 col-md-6">
         <div class="form-group">
@@ -48,7 +49,7 @@
      <div class="row">
          <div class="col-md-6">
 
-         <div class="alert alert-danger hidden">Preenchas os campos!</div>
+         <div class="alert alert-danger hidden" id="erro">Preenchas os campos!</div>
 
          </div>
      </div>
@@ -62,6 +63,6 @@
     </div>
 
 
-
+<script src="js/form-departamentos.js"></script>c
 </body>
 </html>

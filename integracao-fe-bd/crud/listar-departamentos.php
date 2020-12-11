@@ -53,7 +53,7 @@ $result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php o
 
                 <a href="#" class="btn btn-warning"> <i class="glyphicon glyphicon-pencil"> </i>  </a>
                 
-                <a href="#" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"> </i>  </a>
+                <a onclick="return confirm('Deseja realmente excluir o departamento? (Essas alterações são irreversíveis, tenha cuidado!)')" href="acao-departamentos.php?acao=excluir&id_departamento=<?php echo($r['id_departamento']); ?>" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
 
                 </td>
             </tr>
