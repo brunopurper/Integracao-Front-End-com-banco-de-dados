@@ -40,6 +40,8 @@ if ( isset($_GET['id_departamento']) ) {
     
 </head>
 <body>
+<?php include('menu.php')?>
+
     <div class="container">
 
     <h1> <?php echo($titulo); ?> Departamentos</h1>
@@ -72,7 +74,7 @@ if ( isset($_GET['id_departamento']) ) {
         <div class="col-sm-3 col-md-2 text-center">
         <div class="form-group">
 
-        <button type="submit" class="btn btn-primary"> <i class="glyphicon glyphicon-floppy-disk"> </i> SALVAR </button>
+        <button type="submit" class="btn btn-primary"> <i class="far fa-save fa-lg"></i> SALVAR </button>
         </div>
         </div>  
 

@@ -19,6 +19,9 @@ $result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php o
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+
+<?php include('menu.php')?>
+
     <div class="container">
 
     <h1>Departamentos</h1>
@@ -120,8 +123,7 @@ $result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php o
 
 
     </div>
-    <script src="js/jquery-3.5.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
+
 
 </body>
 </html>
