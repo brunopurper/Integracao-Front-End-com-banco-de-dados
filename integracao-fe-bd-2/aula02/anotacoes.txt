@@ -1,0 +1,8 @@
+Iremos utilizar o formato clássico conhecido como misto:
+- O arquivo é .php
+- Dentro dele temos código HTML e PHP (abrindo e fechando as tags conforme a necessidade)
+
+Para deixar separado o PHP do HTML precisaríamos utilizar um outro conceito de implementação
+chamado MVC:
+Model - View - Controller
+BD    - UI   - PHP

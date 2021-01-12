@@ -2,11 +2,13 @@
 <?php 
 // Como vamos manipular dados no banco, precisamos incluir o arquivo de conexao
 include('conexao.php');
-
-$sql = $conn->prepare('SELECT * FROM DEPARTAMENTOS ORDER BY NOME');
+include('Helpers.php');
+$sql = $conn->prepare('SELECT * FROM FUNCIONARIOS ORDER BY NOME');
 
 $sql->execute();
 $result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php os reg do BD 
+
+$helper = new Helpers();
 
 ?>
 
@@ -15,7 +17,7 @@ $result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php o
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de funcionários</title>
+    <title>Meu primeiro CRUD</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -24,7 +26,7 @@ $result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php o
 
     <div class="container">
 
-    <h1>Departamentos</h1>
+    <h1>Funcionários</h1>
     <?php 
       if (isset($_GET['msg'])){
         ?>
@@ -39,14 +41,18 @@ $result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php o
     ?>
     <hr>
 
-    <a href="form-departamentos.php" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> NOVO</a>
+    <a href="form-funcionarios.php" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> NOVO</a>
     <hr>
 
         <table class="table table-hover">
             <thead >
                 <tr>
                     <th>Nome</th>
-                    <th>Sigla</th>
+                    <th>Genero</th>
+                    <th>Salário</th>
+                    <th>Data de nascimento</th>
+                    <th>Data de admissão</th>
+                    <th>Departamento</th>
                     <th class="text-right">Ação</th>
                 </tr>
             </thead>
@@ -62,25 +68,29 @@ $result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php o
             ?>
             <tr>
                 <td><?php echo($r['nome']); ?></td>
-                <td><?php echo($r['sigla']); ?></td>
+                <td><?php echo($r['genero']); ?></td>
+                <td><?php echo($r['salario']); ?></td>
+                <td><?=$helper->dateToBR($r['dt_nascimento']) ?></td>
+                <td><?=$helper->dateToBR(explode(' ', $r['dt_admissao'])[0]) ?></td>
+                <td><?php echo($r['id_departamento']); ?></td>
                 
                 <td class="text-right" >
 
-                <a href="form-departamentos.php?id_departamento=<?php echo($r['id_departamento']);?>" class="btn btn-warning"> <i class="glyphicon glyphicon-pencil"> </i>  </a>
+                <a href="form-funcionarios.php?id_funcionario=<?php echo($r['id_funcionario']);?>" class="btn btn-warning"> <i class="glyphicon glyphicon-pencil"> </i>  </a>
                 
 
                   <!-- Button trigger modal -->
-           <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal-<?php echo($r['id_departamento']); ?>"> 
+           <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal-<?php echo($r['id_funcionario']); ?>"> 
             <i class="glyphicon glyphicon-trash"> </i>
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="myModal-<?php echo($r['id_departamento']);?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="myModal-<?php echo($r['id_funcionario']);?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Você realmente deseja excluir o Departamento <?php echo($r['nome']); ?>? </h4>
+                    <h4 class="modal-title" id="myModalLabel">Você realmente deseja excluir o Funcionário <?php echo($r['nome']); ?>? </h4>
                   </div>
                   <div class="modal-body">
                   Lembrando que essa alteração é <strong>irreversível</strong> e afeta diretamente a base de dados da empresa!! 
@@ -89,7 +99,7 @@ $result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php o
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
 
-                    <a href="acao-departamentos.php?acao=excluir&id_departamento=<?php echo($r['id_departamento'])?>" class="btn btn-danger">CONFIRMAR</a>
+                    <a href="acao-funcionarios.php?acao=excluir&id_funcionario=<?php echo($r['id_funcionario'])?>" class="btn btn-danger">CONFIRMAR</a>
                   </div>
                 </div>
               </div>
