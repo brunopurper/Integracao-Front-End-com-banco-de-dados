@@ -15,12 +15,11 @@ if (isset($_REQUEST['acao'])) {
                 // $id_funcionario = $_POST['id_funcionario'];
                 $nome = $_POST['nome'];
                 $dt_nascimento = implode('-',array_reverse(explode('/', $_POST['dt_nascimento'])));
-                $dt_admissao = ($_POST['dt_admissao']);
+                $dt_admissao = $_POST['dt_admissao'];
                 $genero = ($_POST['genero']);
                 $salario = ($_POST['salario']);
                 // var_dump($dt_nascimento);die;
                 $id_departamento = ($_POST['id_departamento']);
-
 
                 // agora sim fazemos a inserção no banco de dados
 

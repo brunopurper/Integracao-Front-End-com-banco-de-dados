@@ -3,7 +3,9 @@
 // Como vamos manipular dados no banco, precisamos incluir o arquivo de conexao
 include('conexao.php');
 include('Helpers.php');
-$sql = $conn->prepare('SELECT * FROM FUNCIONARIOS ORDER BY NOME');
+$sql = $conn->prepare('SELECT *  FROM FUNCIONARIOS ORDER BY NOME'
+
+);
 
 $sql->execute();
 $result = $sql->fetchAll(); // Converte em um vetor associativo legivel ao php os reg do BD 

@@ -2,14 +2,34 @@
 
 include('conexao.php');
 
+
+$sql2 = $conn->prepare('SELECT * FROM DEPARTAMENTOS ORDER BY NOME');
+$sql2->execute();
+$result2 = $sql2->fetchAll();
+
+
+global $deps;
+$deps = array();
+foreach ($result2 as $r2) {       
+ $deps += array($r2['id_departamento'] => $r2['nome']);
+};
+
+
+
+
+
 if ( isset($_GET['id_funcionario']) ) {
 
     $id_funcionario = $_GET['id_funcionario'];
 
 
+
+
     $sql= $conn->prepare("SELECT * FROM FUNCIONARIOS WHERE ID_FUNCIONARIO = $id_funcionario");
     $sql->execute();
     $result = $sql->fetchAll();
+
+
 
     $titulo = 'Editar';
 
@@ -35,7 +55,11 @@ if ( isset($_GET['id_funcionario']) ) {
 
 }
 
+
+
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -58,7 +82,7 @@ if ( isset($_GET['id_funcionario']) ) {
 
     
 
-    <form action="acao-funcionarios.php" method="POST" class="form" onsubmit="return validaDepartamento()" > 
+    <form name="'form" action="acao-funcionarios.php" method="POST" class="form" onsubmit="return validaFuncionarios()" > 
     <div class="row">
         <div class="col-sm-5 col-md-4">
         <div class="form-group">
@@ -74,7 +98,7 @@ if ( isset($_GET['id_funcionario']) ) {
         <h4>Data de Nascimento</h4>
 
 
-        <input type="text" name="dt_nascimento" id="dt_nascimento" placeholder="00/00/0000" maxlength="10" class="form-control" value="<?=implode('/',array_reverse(explode('-', $dt_nascimento)))?>">
+        <input type="date" name="dt_nascimento" id="dt_nascimento" placeholder="00/00/0000" maxlength="10" class="form-control" value="<?=implode('/',array_reverse(explode('-', $dt_nascimento)))?>">
 
         </div>
         </div>
@@ -83,8 +107,8 @@ if ( isset($_GET['id_funcionario']) ) {
         <div class="form-group">
         <h4>Data de admissão</h4>
 
-        <input type="text" name="dt_admissao" id="dt_admissao" placeholder="0000-00-00" maxlength="20" 
-        class="form-control" value="<?=$dt_admissao?>">
+        <input type="datetime-local" name="dt_admissao" id="dt_admissao" placeholder="0000/00/00" maxlength="10" 
+        class="form-control" value="<?=implode('/',array_reverse(explode('-', $dt_admissao)))?>">
         </div>
         </div>
 
@@ -94,8 +118,8 @@ if ( isset($_GET['id_funcionario']) ) {
         <h4>Gênero</h4>
         <select class="form-control" name="genero" id="genero">
         <!-- Operador ternário -->
-        <option value="M" <?=$genero == 'M' ? 'selected' : ''?> >M</option>
-        <option value="F" <?=$genero == 'F' ? 'selected' : ''?> >F</option>
+        <option value="M" <?=$genero == 'M' ? 'selected' : ''?> >Masculino</option>
+        <option value="F" <?=$genero == 'F' ? 'selected' : ''?> >Feminino</option>
         </select>
 
         <!-- <input type="text" name="genero" id="genero" placeholder="M/F" maxlength="1" 
@@ -112,7 +136,7 @@ if ( isset($_GET['id_funcionario']) ) {
         </div>
         </div>
 
-        <div class="col-sm-3 col-md-2">
+        <div class="col-sm-3 col-md-4">
         <div class="form-group">
         <h4>Departamento</h4>
 
@@ -120,8 +144,11 @@ if ( isset($_GET['id_funcionario']) ) {
         class="form-control" value="<?php echo($id_departamento);?>">
         
         </div>
-        </div>
+        </div> 
 
+
+
+        
 
 
      <div class="row">
@@ -136,14 +163,16 @@ if ( isset($_GET['id_funcionario']) ) {
      <input type="hidden" name="acao" value="<?php echo($acao); ?>">
      <input type="hidden" name="id_funcionario" value="<?php echo($id_funcionario); ?>">
 
+
     </form> <br>
 
     <a href="listar-funcionarios.php" class="btn btn-success"><i class="glyphicon glyphicon-chevron-left"></i> VOLTAR </a>
     <button type="submit" class="btn btn-primary"> <i class="far fa-save fa-lg"></i> SALVAR </button>
 
+
     </div>
 
 
-<!-- <script src="js/form-departamentos.js"></script> -->
+<script src="js/form-funcionarios.js"></script>
 </body>
 </html>
