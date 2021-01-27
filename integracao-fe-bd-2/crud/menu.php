@@ -26,11 +26,12 @@
             <li><a href="listar-departamentos.php">Listar</a></li>
           </ul>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> FUNCIONARIOS <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="form-departamentos.php">Cadastrar</a></li>
-            <li><a href="listar-departamentos.php">Listar</a></li>
+
+        <li>          
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> FUNCIONÁRIOS <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="form-funcionarios.php">Cadastrar</a></li>
+            <li><a href="listar-funcionarios.php">Listar</a></li>
           </ul>
         </li>
 
