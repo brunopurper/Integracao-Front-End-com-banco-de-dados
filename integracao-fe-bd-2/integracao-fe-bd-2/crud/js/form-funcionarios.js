@@ -1,4 +1,9 @@
-console.log('oi');
+$(document).ready(function(){
+    $('#dt_nascimento').mask('00/00/0000');
+    // $('#dt_admissao').mask('00/00/0000 00:00:00');
+    $('#salario').mask('000000.00', {reverse: true});
+ 
+  });
 
 function validaFuncionarios(){
 

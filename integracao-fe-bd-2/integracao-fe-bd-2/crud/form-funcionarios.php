@@ -8,10 +8,10 @@ $sql2->execute();
 $result2 = $sql2->fetchAll();
 
 
-global $deps;
-$deps = array();
+global $depart;
+$depart = array();
 foreach ($result2 as $r2) {       
- $deps += array($r2['id_departamento'] => $r2['nome']);
+ $depart += array($r2['id_departamento'] => $r2['nome']);
 };
 
 
@@ -98,7 +98,7 @@ if ( isset($_GET['id_funcionario']) ) {
         <h4>Data de Nascimento</h4>
 
 
-        <input type="date" name="dt_nascimento" id="dt_nascimento" placeholder="00/00/0000" maxlength="10" class="form-control" value="<?=implode('/',array_reverse(explode('-', $dt_nascimento)))?>">
+        <input type="text" name="dt_nascimento" id="dt_nascimento" placeholder="00/00/0000" maxlength="10" class="form-control" value="<?=implode('/',array_reverse(explode('-', $dt_nascimento)))?>">
 
         </div>
         </div>
@@ -107,7 +107,7 @@ if ( isset($_GET['id_funcionario']) ) {
         <div class="form-group">
         <h4>Data de admissão</h4>
 
-        <input type="datetime-local" name="dt_admissao" id="dt_admissao" placeholder="0000/00/00" maxlength="10" 
+        <input type="datetime-local" name="dt_admissao" id="dt_admissao" placeholder="00/00/0000 00:00:00" maxlength="20" 
         class="form-control" value="<?=implode('/',array_reverse(explode('-', $dt_admissao)))?>">
         </div>
         </div>
@@ -122,8 +122,7 @@ if ( isset($_GET['id_funcionario']) ) {
         <option value="F" <?=$genero == 'F' ? 'selected' : ''?> >Feminino</option>
         </select>
 
-        <!-- <input type="text" name="genero" id="genero" placeholder="M/F" maxlength="1" 
-        class="form-control" value="<?php echo($genero);?>"> -->
+    
         </div>
         </div>
 
@@ -136,15 +135,26 @@ if ( isset($_GET['id_funcionario']) ) {
         </div>
         </div>
 
-        <div class="col-sm-3 col-md-4">
-        <div class="form-group">
-        <h4>Departamento</h4>
+        <div class="col-sm-2 col-md-3">
+          <div class="form-group">
+            <h4 for="id_departamento">Departamento</h4>
+            <select  class="form-control" id="id_departamento" name="id_departamento">
+             <option value="0">Selecionar Departamento...</option>
+         <?php
 
-        <input type="text" name="id_departamento" id="id_departamento" placeholder="Departamento" maxlength="60" 
-        class="form-control" value="<?php echo($id_departamento);?>">
-        
+         for ($i = 1; $i <= count($depart); $i++) {
+            if ($i == $id_departamento) {
+               $selecionado = 'selecionado';
+            } else {
+               $selecionado = '';
+            }
+         ?>
+             <option value="<?php echo ($i); ?>" <?php echo($selecionado) ?>><?php echo ($depart[$i]) ?></option> 
+         <?php }; ?>
+            </select>
+
         </div>
-        </div> 
+        </div>
 
 
 
@@ -174,5 +184,6 @@ if ( isset($_GET['id_funcionario']) ) {
 
 
 <script src="js/form-funcionarios.js"></script>
+<script src="js/jquery.mask.js"></script>
 </body>
 </html>
