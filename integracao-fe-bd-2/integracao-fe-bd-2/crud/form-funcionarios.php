@@ -1,6 +1,8 @@
 <?php 
 
 include('conexao.php');
+include('verifica-sessao.php');
+
 
 
 $sql2 = $conn->prepare('SELECT * FROM DEPARTAMENTOS ORDER BY NOME');
@@ -118,6 +120,7 @@ if ( isset($_GET['id_funcionario']) ) {
         <h4>Gênero</h4>
         <select class="form-control" name="genero" id="genero">
         <!-- Operador ternário -->
+        <option value="0">Selecione...</option>
         <option value="M" <?=$genero == 'M' ? 'selected' : ''?> >Masculino</option>
         <option value="F" <?=$genero == 'F' ? 'selected' : ''?> >Feminino</option>
         </select>
@@ -158,10 +161,8 @@ if ( isset($_GET['id_funcionario']) ) {
 
 
 
-        
-
-
-     <div class="row">
+    
+    <div class="row">
          <div class="col-md-6">
 
          <div class="alert alert-danger hidden" id="erro">Preenchas os campos!</div>
@@ -173,8 +174,8 @@ if ( isset($_GET['id_funcionario']) ) {
      <input type="hidden" name="acao" value="<?php echo($acao); ?>">
      <input type="hidden" name="id_funcionario" value="<?php echo($id_funcionario); ?>">
 
-
     </form> <br>
+
 
     <a href="listar-funcionarios.php" class="btn btn-success"><i class="glyphicon glyphicon-chevron-left"></i> VOLTAR </a>
     <button type="submit" class="btn btn-primary"> <i class="far fa-save fa-lg"></i> SALVAR </button>

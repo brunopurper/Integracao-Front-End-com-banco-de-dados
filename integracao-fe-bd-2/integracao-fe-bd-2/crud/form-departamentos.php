@@ -1,6 +1,9 @@
 <?php 
 
 include('conexao.php');
+include('verifica-sessao.php');
+
+
 
 if ( isset($_GET['id_departamento']) ) {
 
@@ -27,6 +30,9 @@ if ( isset($_GET['id_departamento']) ) {
     $id_departamento = '';
 }
 
+
+
+
 ?>
 
 
@@ -41,6 +47,7 @@ if ( isset($_GET['id_departamento']) ) {
 </head>
 <body>
 <?php include('menu.php')?>
+
 
     <div class="container">
 
@@ -96,7 +103,10 @@ if ( isset($_GET['id_departamento']) ) {
 
     <a href="listar-departamentos.php" class="btn btn-success"><i class="glyphicon glyphicon-chevron-left"></i> VOLTAR </a>
 
+
+
     </div>
+
 
 
 <script src="js/form-departamentos.js"></script>

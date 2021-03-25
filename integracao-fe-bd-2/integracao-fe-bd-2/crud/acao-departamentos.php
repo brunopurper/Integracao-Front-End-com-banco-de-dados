@@ -1,5 +1,7 @@
 <?php
 include('conexao.php');
+include('verifica-sessao.php');
+
 
 if (isset($_REQUEST['acao'])) {
 

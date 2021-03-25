@@ -1,5 +1,6 @@
 <?php
 include('conexao.php');
+include('verifica-sessao.php');
 
 if (isset($_REQUEST['acao'])) {
 
@@ -24,7 +25,8 @@ if (isset($_REQUEST['acao'])) {
                 // agora sim fazemos a inserção no banco de dados
 
                 $sql = $conn->prepare("INSERT INTO FUNCIONARIOS (nome,dt_nascimento, dt_admissao,genero,salario,id_departamento) VALUES ('$nome','$dt_nascimento','$dt_admissao', '$genero','$salario','$id_departamento') ");
-                $sql->execute();
+
+                 $sql->execute();
             }
 
 
