@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
 
   <div class="container">
   <div style="width: 500px; height:500px; margin: 0 auto;"> 
-    <h2>Login C.R.U.D </h2>
+    <h2>Login C.R.U.D</h2>
     <form action="valida-login.php" method="POST" class="form">
       <input id="login" type="text" name="usuario" placeholder="Usuario" class="form-control">
       <br>
